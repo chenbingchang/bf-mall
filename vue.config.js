@@ -31,6 +31,13 @@ module.exports = {
       .set('@assets', resolve('src/assets'))
       .set('@common', resolve('src/common'))
   },
+  pluginOptions: {
+    htmlWebpackPlugin: {
+      options: {
+        title: '冰封商城',
+      },
+    },
+  },
   // @vue/cli-plugin-pwa插件配置
   // pwa: {
   //   // 浏览器小图标路径，这里配置的是html的meta的图标
