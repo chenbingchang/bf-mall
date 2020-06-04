@@ -26,17 +26,16 @@ module.exports = {
     port: 1425,
   },
   chainWebpack: config => {
+    // 引入路劲的别名
     config.resolve.alias
       .set('@components', resolve('src/components'))
       .set('@assets', resolve('src/assets'))
       .set('@common', resolve('src/common'))
-  },
-  pluginOptions: {
-    htmlWebpackPlugin: {
-      options: {
-        title: '冰封商城',
-      },
-    },
+    // html标题
+    config.plugin('html').tap(args => {
+      args[0].title = '冰封商城'
+      return args
+    })
   },
   // @vue/cli-plugin-pwa插件配置
   // pwa: {

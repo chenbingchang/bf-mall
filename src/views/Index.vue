@@ -1,6 +1,7 @@
 <template>
-  <div>
-    Index
+  <div class="index">
+    Index222
+    <div class="ass"></div>
     <router-view></router-view>
   </div>
 </template>
@@ -10,3 +11,9 @@ export default {
   name: 'Index',
 }
 </script>
+
+<style lang="scss">
+  .index {
+    @include full-wh();
+  }
+</style>
