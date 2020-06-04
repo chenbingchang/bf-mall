@@ -1,10 +1,5 @@
 <template>
   <div id="app">
-    aaaa
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
     <router-view/>
   </div>
 </template>
@@ -18,8 +13,12 @@ export default {
   },
 }
 </script>
-<style lang="scss">
-#app {
 
+<style lang="scss">
+@import "@common/css/base";
+
+#app {
+  width: 100%;
+  height: 100%;
 }
 </style>

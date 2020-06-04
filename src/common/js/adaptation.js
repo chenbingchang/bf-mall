@@ -17,6 +17,8 @@ function adaptation () {
   const scale = 1 / dpr // 要么整体缩放比例
   let fontSizeRadio = 1 // 手机字体正常比例
   let isLandscape = false // 是否横屏
+  const designWidth = 375 // 设计稿的宽度
+  const baseFontSize = 100 // html基础的font-size，注意需要和scss中计算rem的函数一样
 
   // 设置页面缩放比例并禁止用户手动缩放
   document
@@ -58,18 +60,18 @@ function adaptation () {
 
     /**
      * 注意：由于html的font-size设置的特别大，使得行内块元素之间的间距会变得非常大，注意清空行内块的间距
-     * 设计稿基于(360*640)
+     * 设计稿基于iphone6(375*667)
      * 方便计算，设计的html的font-size: 100px;
      * screen.width 屏幕的逻辑像素
      */
     if (!isLandscape) {
       // 竖屏
       docEle.style.fontSize =
-        100 * dpr * (screen.width / 360) * fontSizeRadio + 'px'
+        baseFontSize * dpr * (screen.width / designWidth) * fontSizeRadio + 'px'
     } else {
       // 横屏
       docEle.style.fontSize =
-        100 * dpr * (screen.height / 360) * fontSizeRadio + 'px'
+        baseFontSize * dpr * (screen.height / designWidth) * fontSizeRadio + 'px'
     }
     docEle.setAttribute('data-dpr', dpr)
   }

@@ -13,6 +13,11 @@ body {
   height: 100%;
 }
 
+body {
+  /* 给body一个字体大小，不然会由于html设置的字体大小很大，导致字体会特别大 */
+  @include fontSize(16px)
+}
+
 /*行内块元素*/
 input,
 img {

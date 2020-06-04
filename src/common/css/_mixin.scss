@@ -11,3 +11,37 @@
   justify-content: $h;
   align-items: $v;
 }
+
+// 根据像素比
+@mixin fontSize($px) {
+  /*
+  &代表父类选择器，如果父类是嵌套多层的，则&也是嵌套多层，
+  比如(scss):
+  .head {
+    .txt {
+      .txt-icon {
+        @include fontSize(14px)
+      }
+    }
+  }
+  则&表示   .head .txt .txt-icon
+  */
+  [data-dpr="1"] & {
+    font-size: $px * 1;
+  }
+  [data-dpr="2"] & {
+    font-size: $px * 2;
+  }
+  [data-dpr="2.5"] & {
+    font-size: $px * 2.5;
+  }
+  [data-dpr="2.75"] & {
+    font-size: $px * 2.75;
+  }
+  [data-dpr="3"] & {
+    font-size: $px * 3;
+  }
+  [data-dpr="4"] & {
+    font-size: $px * 4;
+  }
+}
