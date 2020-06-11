@@ -13,6 +13,21 @@ const routes = [
         name: 'Home',
         component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
       },
+      {
+        path: '/category',
+        name: 'Category',
+        component: () => import(/* webpackChunkName: "category" */ '../views/Category.vue'),
+      },
+      {
+        path: '/cart',
+        name: 'Cart',
+        component: () => import(/* webpackChunkName: "cart" */ '../views/Cart.vue'),
+      },
+      {
+        path: '/user',
+        name: 'User',
+        component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
+      },
     ],
   },
   {
