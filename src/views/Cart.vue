@@ -1,5 +1,5 @@
 <template>
-  <div class="cart">
+  <div class="cart index__main">
     Cart
   </div>
 </template>
@@ -12,7 +12,6 @@ export default {
 
 <style lang="scss">
 .cart {
-  @include marginBottomMenu();
 }
 
 </style>

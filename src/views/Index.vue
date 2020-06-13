@@ -18,5 +18,13 @@ export default {
   .index {
     position: relative;
     @include full-wh();
+
+    &__main {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: px2rem(52);
+    }
   }
 </style>

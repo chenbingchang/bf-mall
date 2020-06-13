@@ -1,5 +1,5 @@
 <template>
-  <div class="user">
+  <div class="user index__main">
     User
   </div>
 </template>
@@ -12,6 +12,5 @@ export default {
 
 <style lang="scss">
   .user {
-    @include marginBottomMenu();
   }
 </style>

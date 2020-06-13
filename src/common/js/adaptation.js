@@ -76,12 +76,15 @@ function adaptation () {
     docEle.setAttribute('data-dpr', dpr)
   }
 
+  // setBaseFontSize()
+
   let tid = null
   // 页面发生变化时重置font-size
   // 防止多个事件重复执行，增加延迟100ms操作(防抖)
   window.addEventListener(
     'resize',
     function () {
+      console.log('window------------------resize')
       if (tid) {
         clearTimeout(tid)
       }
@@ -93,6 +96,7 @@ function adaptation () {
   window.addEventListener(
     'pageshow',
     function (e) {
+      console.log('window------------------pageshow')
       // 是否从缓存中读取，e.persisted只有pageshow事件才有
       if (e.persisted) {
         if (tid) {

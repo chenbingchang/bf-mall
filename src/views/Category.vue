@@ -1,5 +1,5 @@
 <template>
-  <div class="category">
+  <div class="category index__main">
     Category
   </div>
 </template>
@@ -12,6 +12,5 @@ export default {
 
 <style lang="scss">
 .category {
-  @include marginBottomMenu();
 }
 </style>

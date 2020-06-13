@@ -12,15 +12,6 @@
   align-items: $v;
 }
 
-// Index底部占的高度
-@mixin marginBottomMenu {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: px2rem(52);
-}
-
 // 根据像素比
 @mixin fontSize($px) {
   /*

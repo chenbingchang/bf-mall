@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home index__main">
     <div class="home__search">
       <div class="home__logo-wrap">
         <img
@@ -16,51 +16,62 @@
         <i class="home__login iconfont icon-user"></i>
       </div>
     </div>
-    <div class="home__wheel">
+    <BfScrollbar
+      class="home__scroll"
+      :canClick="false"
+      :canDrag="false"
+      :isRem="true"
+      :remFontSize="100"
+      barClass="common-scroll-bar"
+      thumbClass="common-scroll-thumb"
+    >
+      <div class="home__wheel">
 
-    </div>
-    <ul class="home__goods">
-      <li>1111</li>
-      <li>1111</li>
-      <li>1111</li>
-      <li>1111</li>
-      <li>1111</li>
-      <li>1111</li>
-      <li>1111</li>
-      <li>2222</li>
-      <li>2222</li>
-      <li>2222</li>
-      <li>2222</li>
-      <li>2222</li>
-      <li>2222</li>
-      <li>2222</li>
-      <li>2222</li>
-      <li>3333</li>
-      <li>3333</li>
-      <li>3333</li>
-      <li>3333</li>
-      <li>3333</li>
-      <li>3333</li>
-      <li>3333</li>
-      <li>3333</li>
-      <li>4444</li>
-      <li>4444</li>
-      <li>4444</li>
-      <li>4444</li>
-      <li>4444</li>
-      <li>4444</li>
-      <li>4444</li>
-      <li>4444</li>
-      <li>4444</li>
-      <li>4444</li>
-      <li>4444</li>
-      <li>5555</li>
-      <li>5555</li>
-      <li>5555</li>
-      <li>5555</li>
-      <li>5555</li>
-      <li>end</li>
-    </ul>
+      </div>
+
+      <ul class="home__goods">
+        <li>1111</li>
+        <li>1111</li>
+        <li>1111</li>
+        <li>1111</li>
+        <li>1111</li>
+        <li>1111</li>
+        <li>1111</li>
+        <li>2222</li>
+        <li>2222</li>
+        <li>2222</li>
+        <li>2222</li>
+        <li>2222</li>
+        <li>2222</li>
+        <li>2222</li>
+        <li>2222</li>
+        <li>3333</li>
+        <li>3333</li>
+        <li>3333</li>
+        <li>3333</li>
+        <li>3333</li>
+        <li>3333</li>
+        <li>3333</li>
+        <li>3333</li>
+        <li>4444</li>
+        <li>4444</li>
+        <li>4444</li>
+        <li>4444</li>
+        <li>4444</li>
+        <li>4444</li>
+        <li>4444</li>
+        <li>4444</li>
+        <li>4444</li>
+        <li>4444</li>
+        <li>4444</li>
+        <li>5555</li>
+        <li>5555</li>
+        <li>5555</li>
+        <li>5555</li>
+        <li>5555</li>
+        <li>end</li>
+      </ul>
+    </BfScrollbar>
   </div>
 </template>
 
@@ -69,13 +80,21 @@
 
 export default {
   name: 'Home',
+  data () {
+    return {
+
+    }
+  },
+  components: {
+    BfScrollbar: () => import(/* webpackChunkName: "BfScrollbar" */ '@components/common/BfScrollbar'),
+  },
 }
 </script>
 
 <style lang="scss">
   .home {
-    @include marginBottomMenu();
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
 
     /* 需要使用自己写的js滚动条 */
     /* &::-webkit-scrollbar {
@@ -97,14 +116,38 @@ export default {
     } */
 
     &__search {
-      position: fixed;
-      left: 0;
-      top: 0;
-      right: 0;
+      flex: 0 0 auto;
+      // position: fixed;
+      // left: 0;
+      // top: 0;
+      // right: 0;
       display: flex;
       align-items: center;
       height: px2rem(42);
       background-color: $bg-color;
+    }
+
+    &__scroll {
+      flex: 1 0 auto;
+      height: 0;
+    }
+
+    .common-scroll-bar {
+      border-radius: px2rem(4);
+
+      &.is-vertical {
+        right: px2rem(2);
+        width: px2rem(6);
+      }
+
+      &.is-horizontal {
+        bottom: px2rem(2);
+        height: px2rem(6);
+      }
+    }
+
+    .common-scroll-thumb {
+      background-color: rgba(0, 0, 0, 0.5);
     }
 
     &__logo-wrap,
