@@ -28,49 +28,14 @@
       <div class="home__wheel">
 
       </div>
-
-      <ul class="home__goods">
-        <li>1111</li>
-        <li>1111</li>
-        <li>1111</li>
-        <li>1111</li>
-        <li>1111</li>
-        <li>1111</li>
-        <li>1111</li>
-        <li>2222</li>
-        <li>2222</li>
-        <li>2222</li>
-        <li>2222</li>
-        <li>2222</li>
-        <li>2222</li>
-        <li>2222</li>
-        <li>2222</li>
-        <li>3333</li>
-        <li>3333</li>
-        <li>3333</li>
-        <li>3333</li>
-        <li>3333</li>
-        <li>3333</li>
-        <li>3333</li>
-        <li>3333</li>
-        <li>4444</li>
-        <li>4444</li>
-        <li>4444</li>
-        <li>4444</li>
-        <li>4444</li>
-        <li>4444</li>
-        <li>4444</li>
-        <li>4444</li>
-        <li>4444</li>
-        <li>4444</li>
-        <li>4444</li>
-        <li>5555</li>
-        <li>5555</li>
-        <li>5555</li>
-        <li>5555</li>
-        <li>5555</li>
-        <li>end</li>
-      </ul>
+      <div class="home__goods">
+        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
+        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
+        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
+        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
+        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
+        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
+      </div>
     </BfScrollbar>
   </div>
 </template>
@@ -88,6 +53,9 @@ export default {
   components: {
     BfScrollbar: () => import(/* webpackChunkName: "BfScrollbar" */ '@components/common/BfScrollbar'),
   },
+  methods: {
+
+  },
 }
 </script>
 
@@ -96,31 +64,8 @@ export default {
     display: flex;
     flex-direction: column;
 
-    /* 需要使用自己写的js滚动条 */
-    /* &::-webkit-scrollbar {
-      width: px2rem(0);
-      background-color: transparent;
-      z-index: 999;
-    }
-    &::-webkit-scrollbar-button {
-      display: none;
-    }
-    &::-webkit-scrollbar-track {
-      background-color: greenyellow;
-      background-color: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
-      width: px2rem(6);
-      background-color: rgba(0, 0, 0, 0.3);
-      border-radius: px2rem(3);
-    } */
-
     &__search {
       flex: 0 0 auto;
-      // position: fixed;
-      // left: 0;
-      // top: 0;
-      // right: 0;
       display: flex;
       align-items: center;
       height: px2rem(42);
@@ -130,24 +75,6 @@ export default {
     &__scroll {
       flex: 1 0 auto;
       height: 0;
-    }
-
-    .common-scroll-bar {
-      border-radius: px2rem(4);
-
-      &.is-vertical {
-        right: px2rem(2);
-        width: px2rem(6);
-      }
-
-      &.is-horizontal {
-        bottom: px2rem(2);
-        height: px2rem(6);
-      }
-    }
-
-    .common-scroll-thumb {
-      background-color: rgba(0, 0, 0, 0.5);
     }
 
     &__logo-wrap,

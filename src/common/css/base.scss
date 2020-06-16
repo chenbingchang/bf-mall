@@ -100,3 +100,22 @@ ul {
   height: 240%;
 }
 // monitorElementResize监听元素尺寸变化样式------------------------------------结束
+
+// 滚动条公共样式
+.common-scroll-bar.bf-scrollbar__bar {
+  border-radius: px2rem(4);
+
+  &.is-vertical {
+    right: px2rem(2);
+    width: px2rem(6);
+  }
+
+  &.is-horizontal {
+    bottom: px2rem(2);
+    height: px2rem(6);
+  }
+}
+
+.common-scroll-thumb.bf-scrollbar__thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+}
