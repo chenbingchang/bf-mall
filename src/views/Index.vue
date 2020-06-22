@@ -9,7 +9,7 @@
 export default {
   name: 'Index',
   components: {
-    IndexMenu: () => import(/* webpackChunkName: "index" */ '@components/Index/IndexMenu.vue'),
+    IndexMenu: () => import(/* webpackChunkName: "index" */ '@components/index/IndexMenu.vue'),
   },
 }
 </script>

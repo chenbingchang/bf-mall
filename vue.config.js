@@ -1,5 +1,6 @@
 const path = require('path')
 function resolve (dir) {
+  // path.join使用平台特定的分隔符作为定界符，进行拼接
   return path.join(__dirname, dir)
 }
 

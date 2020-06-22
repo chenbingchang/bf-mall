@@ -25,9 +25,12 @@
       barClass="common-scroll-bar"
       thumbClass="common-scroll-thumb"
     >
-      <div class="home__wheel">
-
-      </div>
+      <CarouselImg
+        class="home__wheel"
+        :imgList="hotImgList"
+      ></CarouselImg>
+      <!-- <div class="">
+      </div> -->
       <div class="home__goods">
         <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
         <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
@@ -47,11 +50,18 @@ export default {
   name: 'Home',
   data () {
     return {
-
+      hotImgList: [
+        'https://img.wbp5.com/upload/images/fxchat/2020/06/19/084634716.jpg',
+        'https://img.wbp5.com/upload/images/fxchat/2020/06/19/084655325.jpg',
+        'https://img.wbp5.com/upload/images/fxchat/2020/06/19/084714794.jpg',
+        'https://img.wbp5.com/upload/images/fxchat/2020/06/17/140556823.jpg',
+        'https://img.wbp5.com/upload/images/fxchat/2020/06/11/162848609.jpg',
+      ],
     }
   },
   components: {
     BfScrollbar: () => import(/* webpackChunkName: "BfScrollbar" */ '@components/common/BfScrollbar'),
+    CarouselImg: () => import(/* webpackChunkName: "CarouselImg" */ '@components/home/CarouselImg'),
   },
   methods: {
 
@@ -122,9 +132,9 @@ export default {
       color: $ft-color;
     }
 
-    &__wheel {
-      height: px2rem(400);
-      background-color: gold;
+    &__wheel.carousel-img {
+      height: px2rem(180);
+      // background-color: gold;
     }
   }
 </style>
