@@ -29,8 +29,6 @@
         class="home__wheel"
         :imgList="hotImgList"
       ></CarouselImg>
-      <!-- <div class="">
-      </div> -->
       <div class="home__goods">
         <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
         <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>

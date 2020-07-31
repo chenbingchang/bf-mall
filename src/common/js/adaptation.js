@@ -25,7 +25,7 @@ function adaptation () {
     .getElementsByName('viewport')[0]
     .setAttribute(
       'content',
-      `width=device-width,initial-scale=${scale},maximum-scale=${scale},minimum-scale=${scale},user-scalable=no`,
+      `width=device-width, initial-scale=${scale}, minimum-scale=${scale}, maximum-scale=${scale}, user-scalable=no`,
     )
 
   // 试探字体大小，用于检测系统字体是否正常
@@ -96,13 +96,17 @@ function adaptation () {
   window.addEventListener(
     'pageshow',
     function (e) {
-      console.log('window------------------pageshow')
+      /*
+      e.persisted在谷歌浏览器中一直都是false
+      */
+      console.log('window------------------pageshow', e.persisted)
       // 是否从缓存中读取，e.persisted只有pageshow事件才有
+      if (tid) {
+        clearTimeout(tid)
+      }
+      tid = setTimeout(setBaseFontSize, 100)
       if (e.persisted) {
-        if (tid) {
-          clearTimeout(tid)
-        }
-        tid = setTimeout(setBaseFontSize, 100)
+        console.log('------------从缓存中pageshow------------')
       }
     },
     false,
