@@ -17,13 +17,20 @@
         >
       </li>
     </ul>
-    <ul class="carousel-img__tip">
-      <li
-        v-for="item in imgList"
-        :key="item"
-        class="carousel-img__order"
-      ></li>
-    </ul>
+    <div class="carousel-img__tip-wrap">
+      <ul class="carousel-img__tip">
+        <li
+          class="carousel-img__order is-active"
+          :class="{'is-transition': isTransitionPoint}"
+          :style="{transform: `translateX(${activePoint * 100}%)`}"
+        ></li>
+        <li
+          v-for="item in imgList"
+          :key="item"
+          class="carousel-img__order"
+        ></li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -53,7 +60,8 @@ export default {
       translateX: 'translateX(0%)', // 轮播容器便宜量
       realImgList: [], // 真正轮播的列表
       isTransition: true, // 是否有过渡效果
-      activePoint: 0, // 激活的小圆点，指示目前是第几个轮播图
+      activePoint: 0, // 激活的小圆点，指示目前是第几个轮播图按下标
+      isTransitionPoint: true, // 激活的提升点否有过渡效果
     }
   },
   computed: {
@@ -103,8 +111,20 @@ export default {
      */
     switch () {
       this.isTransition = true
+      this.isTransitionPoint = true
       ++this.order
       this.translateX = `translateX(${(-this.order) * 100}%)`
+
+      // 计算激活的图片的下标
+      if (this.order === 0) {
+        this.activePoint = this.realImgList.length - 3
+        this.isTransitionPoint = false
+      } else if (this.order === this.realImgList.length - 1) {
+        this.activePoint = 0
+        this.isTransitionPoint = false
+      } else {
+        this.activePoint = this.order - 1
+      }
 
       // 第一张和最后一张要进行跳转
       if (this.order === 0 || this.order === this.realImgList.length - 1) {
@@ -181,33 +201,41 @@ export default {
       height: 100%;
     }
 
-    &__tip {
+    &__tip-wrap {
       position: absolute;
-      left: 50%;
+      left: 0;
+      right: 0;
       bottom: px2rem(30);
-      transform: translateX(-50%);
       display: flex;
       justify-content: center;
     }
 
+    &__tip {
+      position: relative;
+      display: flex;
+      border-radius: px2rem(1.5);
+      overflow: hidden;
+    }
+
     &__order {
-      width: px2rem(22);
-      height: px2rem(4);
-      background: #f00;
+      width: px2rem(18);
+      height: px2rem(3);
+      background: #fff;
+      opacity: 0.2;
 
       &.is-active {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: px2rem(1.5);
         background: #fff;
+        transform: translateX(0%);
+        opacity: 1;
+
+        &.is-transition {
+          transition: transform 0.4s linear;
+        }
       }
-
-      /* &:first-of-type {
-        border-top-left-radius: px2rem(2);
-        border-bottom-left-radius: px2rem(2);
-      } */
-
-      /* &:last-of-type {
-        border-top-right-radius: px2rem(2);
-        border-bottom-right-radius: px2rem(2);
-      } */
     }
 
   }
