@@ -6,6 +6,11 @@
  * 所以需要滚动后阻止touchend事件冒泡
  * 这里为了解决点击穿透，用touchend代替click
  */
+/**
+ * 利用viewport不缩放，或者宽度设置为设备宽度，解决click300ms延迟，
+ * 同时不混用click和touch事件，来解决点击穿透，
+ * 即：点击事件都用click。而touch事件禁止用于地址跳转或者关闭某个弹框，只用于类似移动的事件中
+ */
 function stopTouchendAfterScroll () {
   let isTouchmove = false
 
@@ -13,6 +18,7 @@ function stopTouchendAfterScroll () {
   window.addEventListener('touchmove', windowTouchmove, true)
 
   function windowTouchmove (e) {
+    console.log('全局touchmove', e.aa_isStopPropagation, e)
     if (!isTouchmove) {
       isTouchmove = true
       window.addEventListener('touchend', stopTouchendPropagation, true)
