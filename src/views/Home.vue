@@ -29,13 +29,24 @@
         class="home__wheel"
         :imgList="hotImgList"
       ></CarouselImg>
-      <div class="home__goods">
-        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
-        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
-        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
-        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
-        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
-        <div style="height: 300px; margin-bottom: 30px; background-color: gold;"></div>
+      <div class="home__goods-list">
+        <a
+          class="goods"
+          href="#"
+        >
+          <div class="goods__img-wrap">
+            <img
+              class="goods__img"
+              src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/210dce8c3828bcc5ee4afd683e7ffc84.jpg"
+              alt=""
+            >
+          </div>
+          <div class="goods__infos">
+            <div class="goods__title"></div>
+            <div class="godds__tags"></div>
+            <div class="goods__price"></div>
+          </div>
+        </a>
       </div>
     </BfScrollbar>
   </div>
@@ -132,7 +143,43 @@ export default {
 
     &__wheel.carousel-img {
       height: px2rem(180);
-      // background-color: gold;
+    }
+
+    &__goods-list {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #f5f5f5;
+    }
+
+    .goods {
+      width: px2rem(168);
+      border-radius: px2rem(6);
+      overflow: hidden;
+
+      &__img-wrap {
+        width: 100%;
+        height: px2rem(180);
+      }
+
+      &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+      }
+
+      &__title {
+        margin: px2rem(12) 0;
+        font-size: px2rem(12);
+
+      }
+
+      &__tags {
+
+      }
+
+      &__price {
+
+      }
     }
   }
 </style>
