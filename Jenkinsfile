@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'npm i'
-                sh 'npm run build'
+              // unix使用sh;window使用bat
+                bat 'npm i'
+                bat 'npm run build'
             }
         }
     }
