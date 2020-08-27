@@ -1,18 +1,16 @@
+# 名称，随便起
 name: bf-mall-ci
 # 手动触发
 on: workflow_dispatch
 
-#流程
+# 流程
 jobs:
+  # 流程名称
   my_first:
     name: My first job
+    # 运行环境
     runs-on: ubuntu-18.04
+    # 步骤，可以有很多
     steps:
-      - run: echo helo world by bf-mall
-  my_second:
-    name: MY second job
-    runs-on: ubuntu-18.04
-    # 依赖my_first先完成
-    needs: my_first
-    steps:
-      - run: echo helo world by bf-mall 2
+      # 通过远程触发jenkins的构建，token是在jenkins中配置的，必须配置登录的用户，否则会报错
+      - run: curl http://cbingc.com:5000/job/bf-mall/build?token=78bd9d2aba844d44b481f7975e329150 --user remote:cbc19941115
