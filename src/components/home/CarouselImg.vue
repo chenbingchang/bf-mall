@@ -7,7 +7,7 @@
   >
     <ul
       class="carousel-img__main"
-      :class="{'is-transition': isTransition}"
+      :class="{ 'is-transition': isTransition }"
       :style="{ transform: translateX }"
       ref="main"
     >
@@ -19,16 +19,16 @@
         <img
           class="carousel-img__img"
           :src="item"
-          alt=""
-        >
+          alt
+        />
       </li>
     </ul>
     <div class="carousel-img__tip-wrap">
       <ul class="carousel-img__tip">
         <li
           class="carousel-img__order is-active"
-          :class="{'is-transition': isTransitionPoint}"
-          :style="{transform: translateXPoint}"
+          :class="{ 'is-transition': isTransitionPoint }"
+          :style="{ transform: translateXPoint }"
         ></li>
         <li
           v-for="item in imgList"
@@ -85,7 +85,6 @@ export default {
     translateXPoint () {
       return `translateX(${this.activePoint * 100}%)`
     },
-
   },
   methods: {
     /**
@@ -143,7 +142,7 @@ export default {
         this.order += this.step
       }
       // 这里用模板字符串，谷歌调试工具会很奇怪，所以先用字符串拼接
-      this.translateX = 'translateX(' + (-this.order * 100) + '%)'
+      this.translateX = 'translateX(' + -this.order * 100 + '%)'
 
       // 计算激活的小圆点的下标
       if (this.order === 0) {
@@ -197,13 +196,26 @@ export default {
       // 暂停过渡
       this.isTransition = false
       this.order = this.realImgList.length - 2
-      this.translateX = `translateX(${(-this.order) * 100}%)`
+      this.translateX = `translateX(${-this.order * 100}%)`
     },
     /**
      * 触摸开始，把当前在过渡的效果取消，同时如果是第一或者最后一个则也就切换到相应的图片
      * @param{Event} e 事件
      */
     handleTouchstart (e) {
+      // document.addEventListener(
+      //   'touchmove',
+      //   e => {
+      //     e.stopPropagation()
+      //     e.preventDefault()
+      //   },
+      //   {
+      //     passive: false,
+      //   },
+      // )
+      window.addEventListener('touchmove', this.stopWindowTouchMove, {
+        passive: false,
+      })
       // 停止过渡
       this.isTransition = false
       this.isTransitionPoint = false
@@ -235,13 +247,13 @@ export default {
 
       if (percent > 0) {
         // 往右划
-        const currentX = (-this.order) * 100
+        const currentX = -this.order * 100
         const nextX = currentX + percent
 
         this.translateX = `translateX(${nextX}%)`
       } else {
         // 往左划
-        const currentX = (-this.order) * 100
+        const currentX = -this.order * 100
         const nextX = currentX + percent
 
         this.translateX = `translateX(${nextX}%)`
@@ -253,19 +265,33 @@ export default {
      * @param{Event} e 事件
      */
     handleTouchend (e) {
+      window.removeEventListener('touchmove', this.stopWindowTouchMove)
       const currentX = parseFloat(this.translateX.match(/[-+]?\d+[.]?\d+/g)[0])
       const originX = this.order * -100
 
-      if (originX > currentX && (Math.abs(currentX) - Math.abs(originX)) >= 30) {
+      if (originX > currentX && Math.abs(currentX) - Math.abs(originX) >= 30) {
         // 下一个
         this.switch(this.order + 1)
-      } else if (originX < currentX && (Math.abs(originX) - Math.abs(currentX)) >= 30) {
+      } else if (
+        originX < currentX &&
+        Math.abs(originX) - Math.abs(currentX) >= 30
+      ) {
         // 上一个
         this.switch(this.order - 1)
       } else {
         // 恢复原本的样子
         this.switch(this.order)
       }
+    },
+    /**
+     * 有些手机浏览器（比如：uc浏览器）在touchmove元素时会传到window中
+     * 导致会触发浏览器的自带的事件，比如前进后退功能
+     * 所以在拖动轮播图时，停止window的touchmove事件，结束后再恢复
+     * @param {Event} e 事件
+     */
+    stopWindowTouchMove (e) {
+      e.stopPropagation()
+      e.preventDefault()
     },
   },
   created () {
@@ -285,67 +311,66 @@ export default {
 </script>
 
 <style lang="scss">
-  .carousel-img {
-    position: relative;
-    height: 100%;
-    overflow: hidden;
+.carousel-img {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
 
-    &__main {
-      display: flex;
-      height: 100%;
+  &__main {
+    display: flex;
+    height: 100%;
+    transform: translateX(0%);
+
+    &.is-transition {
+      transition: transform 0.4s linear;
+    }
+  }
+
+  &__img-wrap {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__tip-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: px2rem(30);
+    display: flex;
+    justify-content: center;
+  }
+
+  &__tip {
+    position: relative;
+    display: flex;
+    border-radius: px2rem(1.5);
+    overflow: hidden;
+  }
+
+  &__order {
+    width: px2rem(18);
+    height: px2rem(3);
+    background: #fff;
+    opacity: 0.2;
+
+    &.is-active {
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: px2rem(1.5);
+      background: #fff;
       transform: translateX(0%);
+      opacity: 1;
 
       &.is-transition {
         transition: transform 0.4s linear;
       }
     }
-
-    &__img-wrap {
-      flex: 0 0 auto;
-      width: 100%;
-    }
-
-    &__img {
-      width: 100%;
-      height: 100%;
-    }
-
-    &__tip-wrap {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: px2rem(30);
-      display: flex;
-      justify-content: center;
-    }
-
-    &__tip {
-      position: relative;
-      display: flex;
-      border-radius: px2rem(1.5);
-      overflow: hidden;
-    }
-
-    &__order {
-      width: px2rem(18);
-      height: px2rem(3);
-      background: #fff;
-      opacity: 0.2;
-
-      &.is-active {
-        position: absolute;
-        left: 0;
-        top: 0;
-        border-radius: px2rem(1.5);
-        background: #fff;
-        transform: translateX(0%);
-        opacity: 1;
-
-        &.is-transition {
-          transition: transform 0.4s linear;
-        }
-      }
-    }
-
   }
+}
 </style>

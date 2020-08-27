@@ -1,6 +1,8 @@
 # 脚本的第一个参数是环境
 env=$1
 
+echo "构建开始，环境：${env}"
+
 if [ ${env} == 'dev' ]; then
   # 开发
 elif [ ${env} == 'test' ]; then
