@@ -8,6 +8,8 @@ jobs:
   # 流程名称
   my_first:
     name: My first job
+    # 只有自己才能执行该action。github.repository是仓库源格式：用户名或组织名/项目名；github.repository_owner是用户名或组织名；
+    if: github.repository_owner == 'chenbingchang'
     # 运行环境
     runs-on: ubuntu-18.04
     # 步骤，可以有很多
