@@ -1,0 +1,12 @@
+name: bf-mall
+# 手动触发
+on: workflow_dispatch
+
+#流程
+jobs:
+  my_first:
+    name: My first job
+  my_second:
+    name: MY second job
+    # 依赖my_first先完成
+    needs: my_first

@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 // 适配，开发时为了查看元素的大小，可以先注释
 adaptation()
 
-console.log(process.env.VUE_APP_AUTHOR)
+console.log(process.env.VUE_APP_AUTHOR, process.env.VUE_APP_MODE)
 
 new Vue({
   router,
