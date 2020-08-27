@@ -12,5 +12,5 @@ jobs:
     runs-on: ubuntu-18.04
     # 步骤，可以有很多
     steps:
-      # 通过远程触发jenkins的构建，token是在jenkins中配置的
-      - run: curl http://cbingc.com:5000/job/bf-mall/build?token=78bd9d2aba844d44b481f7975e329150
+      # 通过远程触发jenkins的构建，token是在jenkins中配置的，必须配置登录的用户，否则会报错
+      - run: curl http://cbingc.com:5000/job/bf-mall/build?token=78bd9d2aba844d44b481f7975e329150 --user remote:cbc19941115
