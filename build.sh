@@ -40,3 +40,6 @@ npm rebuild node-sass
 # npm install --save-dev sass fibers
 # 打包
 npm run build:$env
+
+# 构建docker镜像
+# docker build -t 
