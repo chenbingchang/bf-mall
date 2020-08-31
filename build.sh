@@ -23,6 +23,9 @@ elif [ ${env} == 'prod' ]; then
   echo 生产
 fi
 
+# 根据环境使用不同的nginx配置
+cp -rf ./nginx/conf.d/${env}.conf ./nginx/conf.d/app.conf
+
 echo $PATH
 # 查看node版本
 node --version
@@ -42,4 +45,8 @@ npm rebuild node-sass
 npm run build:$env
 
 # 构建docker镜像
-# docker build -t 
+docker build -t registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:dev .
+# 把镜像推到啊里云镜像仓库
+docker push registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:dev
+
+# 触发部署服务器的脚本
