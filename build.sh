@@ -24,7 +24,7 @@ elif [ ${env} == 'prod' ]; then
 fi
 
 # 根据环境使用不同的nginx配置
-cp -rf ./nginx/conf.d/${env}.conf ./nginx/conf.d/app.conf
+cp -f ./nginx/conf.d/${env}.conf ./nginx/conf.d/app.conf
 
 echo $PATH
 # 查看node版本
