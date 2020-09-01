@@ -1,7 +1,5 @@
 # 输入的环境变量
 env=$1
-# 判断是否存在容器，如果不存在删除会报错
-# hasContainer=false
 
 # 停止容器
 docker stop bf-mall
