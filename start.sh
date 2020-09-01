@@ -1,4 +1,7 @@
+# 输入的环境变量
 env=$1
+# 判断是否存在容器，如果不存在删除会报错
+# hasContainer=false
 
 # 停止容器
 docker stop bf-mall
@@ -7,6 +10,6 @@ docker rm bf-mall
 # 强制删除旧镜像
 docker rmi -f registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:$env
 # 拉取新镜像
-docker pull registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:dev
+docker pull registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:$env
 # 运行新容器，指定端口，名称，后台运行
-docker run -itd -p 6000:5000 --name bf-mall registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:dev
+docker run -itd -p 6000:5000 --name bf-mall registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:$env

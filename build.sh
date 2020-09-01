@@ -45,11 +45,11 @@ npm rebuild node-sass
 npm run build:$env
 
 # 构建docker镜像
-docker build -t registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:dev .
+docker build -t registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:$env .
 # 把镜像推到啊里云镜像仓库
-docker push registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:dev
+docker push registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:$env
 
 # 触发部署服务器的脚本
-# curl http://cbingc:5001/trigger/bf-mall?token=&env=dev
-echo 下面测试新增的全局token
-echo $TOKEN
+if [ "$TOKEN" ]; then
+  curl http://cbingc.com:5001/trigger/bf-mall?token=$TOKEN&env=$env
+fi
