@@ -51,5 +51,5 @@ docker push registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:$env
 
 # 触发部署服务器的脚本
 if [ "$TOKEN" ]; then
-  curl http://cbingc.com:5001/trigger/bf-mall?token=${TOKEN}&env=${env}
+  curl "http://cbingc.com:5001/trigger/bf-mall?token=${TOKEN}&env=${env}"
 fi
