@@ -2,10 +2,10 @@
 name: bf-mall-ci
 # 手动触发，或者dev分钟push
 on: 
-  # - workflow_dispatch
-  - push:
-      branches:
-        - dev
+  # workflow_dispatch
+  push:
+    branches:
+      - dev
 
 
 # 流程
