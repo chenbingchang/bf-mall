@@ -161,11 +161,14 @@ export default {
           // 定时还存在
           this.$nextTick(this.checkFirstAndLast)
         } else {
-          // 定时已经被清除
+          // 定时已经被清除，则代表是由于用户手动滑动图片，需要重启轮播
           this.checkFirstAndLast()
           // 重启轮播
           this.restartTimer = setTimeout(this.start, this.transitionTime)
         }
+      } else if (!this.timer) {
+        // 如果用户手动滑动图片，并且不是第一张和最后一张，会漏掉，这里补上重启轮播
+        this.restartTimer = setTimeout(this.start, this.transitionTime)
       }
     },
     /**
@@ -245,19 +248,25 @@ export default {
       // 保留4位小数
       const percent = parseFloat(((offsetX / this.width) * 100).toFixed(4))
 
-      if (percent > 0) {
-        // 往右划
-        const currentX = -this.order * 100
-        const nextX = currentX + percent
+      // if (percent > 0) {
+      //   // 往右划
+      //   const currentX = -this.order * 100
+      //   const nextX = currentX + percent
 
-        this.translateX = `translateX(${nextX}%)`
-      } else {
-        // 往左划
-        const currentX = -this.order * 100
-        const nextX = currentX + percent
+      //   this.translateX = `translateX(${nextX}%)`
+      // } else {
+      //   // 往左划
+      //   const currentX = -this.order * 100
+      //   const nextX = currentX + percent
 
-        this.translateX = `translateX(${nextX}%)`
-      }
+      //   this.translateX = `translateX(${nextX}%)`
+      // }
+
+      // 往右划、往左划的逻辑一样
+      const currentX = -this.order * 100
+      const nextX = currentX + percent
+
+      this.translateX = `translateX(${nextX}%)`
     },
 
     /**
