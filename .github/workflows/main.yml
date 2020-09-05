@@ -20,4 +20,4 @@ jobs:
     # 步骤，可以有很多
     steps:
       # 通过远程触发jenkins的构建，token是在jenkins中配置的，必须配置登录的用户，否则会报错
-      - run: curl ${{ secrets.JENKINS_URL }}&env=dev&branch=dev --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_PWD }}
+      - run: curl '${{ secrets.JENKINS_URL }}&env=dev&branch=dev --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_PWD }}'
