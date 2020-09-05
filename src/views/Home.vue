@@ -42,7 +42,7 @@
             >
           </div>
           <div class="goods__infos">
-            <div class="goods__title">修改源码试试自动构建部署</div>
+            <div class="goods__title">2020-09-05 17:10:34</div>
             <div class="godds__tags"></div>
             <div class="goods__price"></div>
           </div>
