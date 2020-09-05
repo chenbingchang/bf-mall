@@ -206,16 +206,6 @@ export default {
      * @param{Event} e 事件
      */
     handleTouchstart (e) {
-      // document.addEventListener(
-      //   'touchmove',
-      //   e => {
-      //     e.stopPropagation()
-      //     e.preventDefault()
-      //   },
-      //   {
-      //     passive: false,
-      //   },
-      // )
       window.addEventListener('touchmove', this.stopWindowTouchMove, {
         passive: false,
       })
@@ -299,7 +289,7 @@ export default {
      * @param {Event} e 事件
      */
     stopWindowTouchMove (e) {
-      e.stopPropagation()
+      // e.stopPropagation()
       e.preventDefault()
     },
   },

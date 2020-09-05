@@ -42,7 +42,7 @@
             >
           </div>
           <div class="goods__infos">
-            <div class="goods__title">2020-09-05 17:10:34</div>
+            <div class="goods__title">2020-09-05 17:22:55</div>
             <div class="godds__tags"></div>
             <div class="goods__price"></div>
           </div>
