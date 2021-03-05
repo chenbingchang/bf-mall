@@ -60,11 +60,11 @@ export default {
   data () {
     return {
       hotImgList: [
-        'https://img.wbp5.com/upload/images/fxchat/2020/06/19/084634716.jpg',
-        'https://img.wbp5.com/upload/images/fxchat/2020/06/19/084655325.jpg',
-        'https://img.wbp5.com/upload/images/fxchat/2020/06/19/084714794.jpg',
-        'https://img.wbp5.com/upload/images/fxchat/2020/06/17/140556823.jpg',
-        'https://img.wbp5.com/upload/images/fxchat/2020/06/11/162848609.jpg',
+        'https://img.wx168e.com/upload/images/fxchat/2020/06/19/084634716.jpg',
+        'https://img.wx168e.com/upload/images/fxchat/2020/06/19/084655325.jpg',
+        'https://img.wx168e.com/upload/images/fxchat/2020/06/19/084714794.jpg',
+        'https://img.wx168e.com/upload/images/fxchat/2020/06/17/140556823.jpg',
+        'https://img.wx168e.com/upload/images/fxchat/2020/06/11/162848609.jpg',
       ],
     }
   },
