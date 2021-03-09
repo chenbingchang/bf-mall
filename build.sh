@@ -44,6 +44,8 @@ npm rebuild node-sass
 # 打包
 npm run build:$env
 
+# 删除旧的镜像
+docker rmi -f registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:$env
 # 构建docker镜像
 docker build -t registry-vpc.cn-shenzhen.aliyuncs.com/chenbc/bf-mall:$env .
 # 把镜像推到啊里云镜像仓库
