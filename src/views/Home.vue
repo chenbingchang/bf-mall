@@ -43,7 +43,7 @@
           </div>
           <div class="goods__infos">
             <div class="goods__title">2020-09-05 17:22:55</div>
-            <div class="godds__tags">你好</div>
+            <div class="godds__tags">你好，李焕英</div>
             <div class="goods__price"></div>
           </div>
         </a>
