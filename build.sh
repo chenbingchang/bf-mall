@@ -94,7 +94,7 @@ title="商城项目部署通知"
 text="#部署项目：${app_name}\n#环境：${env}\n#地址：[单击打开](${server_host}:${port})\n#更新内容：\n${note}"
 
 curl $web_hook \
-  -H 'Content-Type: application/json; charset=UTF-8;' \
+  -H 'Content-Type: application/json' \
   -d "{
     \"msgtype\": \"markdown\",
     \"title\": \"${title}\",
