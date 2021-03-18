@@ -85,3 +85,16 @@ docker push $docker_image_url
 if [ "$TOKEN" ]; then
   curl "${server_host}/hook/trigger?token=${TOKEN}&appName=${app_name}&env=${env}&port=${port}"
 fi
+
+# 钉钉通知
+web_hook=https://oapi.dingtalk.com/robot/send?access_token=e21dadac4778c0df9ec0ff00869a42482e5ee2692a92098cd668754fa6442ca1
+title=部署项目：$app_name，环境：$env
+
+curl $web_hook \
+  -H 'Content-Type: application/json' \
+  -d '{
+      "msgtype": "text",
+      "text": {
+        "content": "部署成功，我就是我, 是不一样的烟火"
+      }
+    }'
