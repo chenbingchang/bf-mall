@@ -31,17 +31,17 @@ elif [ ${env} == 'test' ]; then
   # 测试
   echo 测试
   server_host="http://cbingc.com:5001"
-  port="7000"
+  port="7001"
 elif [ ${env} == 'stage' ]; then
   # 预发布
   echo 预发布
   server_host="http://cbingc.com:5001"
-  port="7000"
+  port="7002"
 elif [ ${env} == 'prod' ]; then
   # 生产
   echo 生产
   server_host="http://cbingc.com:5001"
-  port="7000"
+  port="7003"
 fi
 
 # 根据环境使用不同的nginx配置
@@ -72,7 +72,9 @@ docker_image_name=$app_name:$env
 # 镜像完整地址
 docker_image_url=$docker_repo_url/$docker_image_name
 
-# 删除旧的镜像
+# 删除依赖旧镜像的容器。至少要先停止运行依赖镜像的容器，才能删除镜像
+docker rm -f $(docker ps -a | grep $docker_image_url | awk '{print $1}')
+# 删除旧的镜像。如果不删除旧镜像，会导致产生none标签的镜像
 docker rmi -f $docker_image_url
 # 构建docker镜像，注意后面有个"."
 docker build -t $docker_image_url .
