@@ -2,6 +2,8 @@
 app_name=$1
 # 脚本的第二个参数是环境
 env=$2
+# 脚本的第三个参数是更新说明
+note=$3
 
 # 判断环境变量是否存在
 if [ -z "$app_name" ]; then
@@ -88,13 +90,13 @@ fi
 
 # 钉钉通知
 web_hook=https://oapi.dingtalk.com/robot/send?access_token=e21dadac4778c0df9ec0ff00869a42482e5ee2692a92098cd668754fa6442ca1
-title=部署项目：$app_name，环境：$env
+title="商城项目部署通知"
+text="#部署项目：${app_name}\n#环境：${env}\n#地址：[单击打开](${server_host}:${port})\n#更新内容：\n${note}"
 
 curl $web_hook \
-  -H 'Content-Type: application/json' \
-  -d '{
-      "msgtype": "text",
-      "text": {
-        "content": "部署成功，我就是我, 是不一样的烟火"
-      }
-    }'
+  -H 'Content-Type: application/json; charset=UTF-8;' \
+  -d "{
+    \"msgtype\": \"markdown\",
+    \"title\": ${title},
+    \"text\": ${text}
+  }"
