@@ -91,7 +91,7 @@ fi
 # 钉钉通知
 web_hook='https://oapi.dingtalk.com/robot/send?access_token=e21dadac4778c0df9ec0ff00869a42482e5ee2692a92098cd668754fa6442ca1'
 title="商城项目部署通知"
-text="#### 部署项目：商城\n#### 环境：${env}\n#### 地址：[单击打开](${server_host}:${port})\n#### 更新内容：\n> ${note}"
+text="#### 部署项目：商城\n#### 环境：${env}\n#### 地址：[单击打开](${server_host}:${port}) ${server_host}:${port}\n#### 更新内容：\n> ${note}"
 
 curl $web_hook \
   -H 'Content-Type: application/json' \
