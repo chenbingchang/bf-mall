@@ -73,7 +73,7 @@ docker_image_name=$app_name:$env
 docker_image_url=$docker_repo_url/$docker_image_name
 
 # 删除旧的镜像
-# docker rmi -f $docker_image_url
+docker rmi -f $docker_image_url
 # 构建docker镜像，注意后面有个"."
 docker build -t $docker_image_url .
 # 把镜像推到啊里云镜像仓库

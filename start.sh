@@ -23,3 +23,5 @@ docker pull $docker_image_url
 # 运行新容器，指定端口（要和nginx中的端口对应），名称，后台运行
 # 掉进了一个坑：6000端口在谷歌浏览器无法使用，参考:https://blog.csdn.net/yenange/article/details/82178056  https://www.iteye.com/blog/mj914-1624394
 docker run -itd -p $port:80 --name $app_name $docker_image_url
+# 删除标记为'<none>'的镜像
+docker rmi -f $(docker images | grep \<none\> | awk '{print $3}')
