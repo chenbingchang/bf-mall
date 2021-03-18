@@ -97,6 +97,8 @@ curl $web_hook \
   -H 'Content-Type: application/json' \
   -d "{
     \"msgtype\": \"markdown\",
-    \"title\": \"${title}\",
-    \"text\": \"${text}\"
+    \"markdown\": {
+      \"title\": \"${title}\",
+      \"text\": \"${text}\"
+    }
   }"
