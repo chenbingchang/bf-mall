@@ -21,28 +21,34 @@ echo "构建开始，项目：${app_name}，环境：${env}"
 
 # 部署服务器地址
 server_host=""
+# webhook接口监听的端口
+webhook_port=""
 # 部署后，外部访问的端口
-port="7000"
+port=""
 
 if [ ${env} == 'dev' ]; then
   # 开发
   echo 开发
-  server_host="http://cbingc.com:5001"
+  server_host="http://cbingc.com"
+  webhook_port="5001"
   port="7000"
 elif [ ${env} == 'test' ]; then
   # 测试
   echo 测试
-  server_host="http://cbingc.com:5001"
+  server_host="http://cbingc.com"
+  webhook_port="5001"
   port="7001"
 elif [ ${env} == 'stage' ]; then
   # 预发布
   echo 预发布
-  server_host="http://cbingc.com:5001"
+  server_host="http://cbingc.com"
+  webhook_port="5001"
   port="7002"
 elif [ ${env} == 'prod' ]; then
   # 生产
   echo 生产
-  server_host="http://cbingc.com:5001"
+  server_host="http://cbingc.com"
+  webhook_port="5001"
   port="7003"
 fi
 
@@ -85,15 +91,15 @@ docker push $docker_image_url
 
 # 触发部署服务器的脚本
 if [ "$TOKEN" ]; then
-  curl "${server_host}/hook/trigger?token=${TOKEN}&appName=${app_name}&env=${env}&port=${port}"
+  curl "${server_host}:${webhook_port}/hook/trigger?token=${TOKEN}&appName=${app_name}&env=${env}&port=${port}"
 fi
 
 # 钉钉通知
-web_hook='https://oapi.dingtalk.com/robot/send?access_token=e21dadac4778c0df9ec0ff00869a42482e5ee2692a92098cd668754fa6442ca1'
+webhook='https://oapi.dingtalk.com/robot/send?access_token=e21dadac4778c0df9ec0ff00869a42482e5ee2692a92098cd668754fa6442ca1'
 title="商城项目部署通知"
 text="#### 部署项目：商城\n#### 环境：${env}\n#### 地址：[单击打开](${server_host}:${port}) ${server_host}:${port}\n#### 更新内容：\n> ${note}"
 
-curl $web_hook \
+curl $webhook \
   -H 'Content-Type: application/json' \
   -d "{
     \"msgtype\": \"markdown\",
