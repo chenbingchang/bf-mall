@@ -17,7 +17,7 @@ docker stop $app_name
 # 删除旧容器
 docker rm $app_name
 # 强制删除旧镜像
-docker rmi -f $docker_image_url
+# docker rmi -f $docker_image_url
 # 拉取新镜像
 docker pull $docker_image_url
 # 运行新容器，指定端口（要和nginx中的端口对应），名称，后台运行
