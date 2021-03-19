@@ -43,7 +43,7 @@
           </div>
           <div class="goods__infos">
             <div class="goods__title">好热呀</div>
-            <div class="godds__tags">老板，来根冰棍</div>
+            <div class="godds__tags">修改bug</div>
             <div class="goods__price"></div>
           </div>
         </a>
