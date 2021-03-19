@@ -24,7 +24,7 @@ module.exports = {
   devServer: {
     hot: true,
     liveReload: true,
-    port: 1425,
+    port: 7000,
   },
   chainWebpack: config => {
     // 引入路劲的别名
