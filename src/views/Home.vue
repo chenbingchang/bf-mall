@@ -37,7 +37,7 @@
           <div class="goods__img-wrap">
             <img
               class="goods__img"
-              src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/210dce8c3828bcc5ee4afd683e7ffc84.jpg"
+              src=""
               alt=""
             >
           </div>
