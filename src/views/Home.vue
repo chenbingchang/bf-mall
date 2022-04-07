@@ -168,7 +168,8 @@ export default {
       }
 
       &__title {
-        margin: px2rem(12) 0;
+        border: 1px solid greenyellow;
+        margin: px2rem(12);
         font-size: px2rem(12);
 
       }
