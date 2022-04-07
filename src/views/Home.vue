@@ -168,7 +168,7 @@ export default {
       }
 
       &__title {
-        border: 1px solid greenyellow;
+        border: 1px solid red;
         margin: px2rem(12);
         font-size: px2rem(12);
 
