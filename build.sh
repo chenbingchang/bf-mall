@@ -29,25 +29,25 @@ port=""
 if [ ${env} == 'dev' ]; then
   # 开发
   echo 开发
-  server_host="http://cbingc.com"
+  server_host="http://47.113.127.116"
   webhook_port="5001"
   port="7000"
 elif [ ${env} == 'test' ]; then
   # 测试
   echo 测试
-  server_host="http://cbingc.com"
+  server_host="http://47.113.127.116"
   webhook_port="5001"
   port="7001"
 elif [ ${env} == 'stage' ]; then
   # 预发布
   echo 预发布
-  server_host="http://cbingc.com"
+  server_host="http://47.113.127.116"
   webhook_port="5001"
   port="7002"
 elif [ ${env} == 'prod' ]; then
   # 生产
   echo 生产
-  server_host="http://cbingc.com"
+  server_host="http://47.113.127.116"
   webhook_port="5001"
   port="7003"
 fi
