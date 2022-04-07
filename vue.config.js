@@ -34,7 +34,7 @@ module.exports = {
       .set('@common', resolve('src/common'))
     // html标题
     config.plugin('html').tap(args => {
-      args[0].title = '冰封商城'
+      args[0].title = 'h5适配demo'
       return args
     })
   },
