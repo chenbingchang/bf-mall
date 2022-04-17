@@ -1,3 +1,5 @@
+import { throttle } from './common'
+
 /**
  * H5适配
  * 参考：https://juejin.im/post/5b6503dee51d45191e0d30d2#heading-24
@@ -51,7 +53,8 @@ function adaptation () {
     fontSizeRadio = setFz / realFz
   }
 
-  const setBaseFontSize = function () {
+  // 加上节流
+  const setBaseFontSize = throttle(function () {
     console.log('重置-html-font-size')
     // 横屏状态检测
     if (window.orientation === 90 || window.orientation === -90) {
@@ -74,21 +77,16 @@ function adaptation () {
         baseFontSize * dpr * (screen.height / designWidth) * fontSizeRadio + 'px'
     }
     docEle.setAttribute('data-dpr', dpr)
-  }
+  }, 150)
 
-  // setBaseFontSize()
+  setBaseFontSize()
 
-  let tid = null
   // 页面发生变化时重置font-size
-  // 防止多个事件重复执行，增加延迟100ms操作(防抖)
   window.addEventListener(
     'resize',
     function () {
       console.log('window------------------resize')
-      if (tid) {
-        clearTimeout(tid)
-      }
-      tid = setTimeout(setBaseFontSize, 100)
+      setBaseFontSize()
     },
     false,
   )
@@ -101,10 +99,7 @@ function adaptation () {
       */
       console.log('window------------------pageshow', e.persisted)
       // 是否从缓存中读取，e.persisted只有pageshow事件才有
-      if (tid) {
-        clearTimeout(tid)
-      }
-      tid = setTimeout(setBaseFontSize, 100)
+      setBaseFontSize()
       if (e.persisted) {
         console.log('------------从缓存中pageshow------------')
       }
