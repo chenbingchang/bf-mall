@@ -29,7 +29,14 @@
         class="home__wheel"
         :imgList="hotImgList"
       ></CarouselImg>
-      <div class="home__goods-list">
+      <div>
+        <a
+          class="home__github"
+          href="https://github.com/chenbingchang/bf-mall/tree/dev"
+          target="_blank"
+        >Github地址</a>
+      </div>
+      <!-- <div class="home__goods-list">
         <a
           class="goods"
           href="#"
@@ -42,12 +49,17 @@
             >
           </div>
           <div class="goods__infos">
-            <div class="goods__title">好热呀</div>
-            <div class="godds__tags">修改bug</div>
+            <div class="goods__title">1px边框</div>
             <div class="goods__price"></div>
           </div>
         </a>
-      </div>
+      </div> -->
+      <div class="a-seat">111</div>
+      <div class="a-seat">222</div>
+      <div class="a-seat">333</div>
+      <div class="a-seat">444</div>
+      <div class="a-seat">555</div>
+      <div class="a-seat">666</div>
     </BfScrollbar>
   </div>
 </template>
@@ -145,10 +157,16 @@ export default {
       height: px2rem(180);
     }
 
+    &__github {
+      display: inline-block;
+      padding: px2rem(20);
+      font-size: px2rem(20);
+    }
+
     &__goods-list {
       display: flex;
       flex-wrap: wrap;
-      background-color: #f5f5f5;
+      // background-color: #f5f5f5;
     }
 
     .goods {
@@ -181,6 +199,12 @@ export default {
       &__price {
 
       }
+    }
+
+    .a-seat {
+      height: px2rem(100);
+      border: 1px solid #333;
+      margin: px2rem(20);
     }
   }
 </style>
