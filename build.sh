@@ -1,19 +1,110 @@
-# 脚本的第一个参数是环境
-env=$1
+# 脚本的第一个参数是项目名称
+app_name=$1
+# 脚本的第二个参数是环境
+env=$2
+# 脚本的第三个参数是更新说明
+note=$3
 
-echo "构建开始，环境：${env}"
+# 判断环境变量是否存在
+if [ -z "$app_name" ]; then
+  echo "请指定项目名称"
+  exit 1
+fi
+
+# 判断环境变量是否存在
+if [ -z "$env" ]; then
+  echo "请指定环境"
+  exit 1
+fi
+
+echo "构建开始，项目：${app_name}，环境：${env}"
+
+# 部署服务器地址
+server_host=""
+# webhook接口监听的端口
+webhook_port=""
+# 部署后，外部访问的端口
+port=""
 
 if [ ${env} == 'dev' ]; then
   # 开发
+  echo 开发
+  server_host="http://47.113.127.116"
+  webhook_port="5001"
+  port="7000"
 elif [ ${env} == 'test' ]; then
   # 测试
+  echo 测试
+  server_host="http://47.113.127.116"
+  webhook_port="5001"
+  port="7001"
 elif [ ${env} == 'stage' ]; then
   # 预发布
+  echo 预发布
+  server_host="http://47.113.127.116"
+  webhook_port="5001"
+  port="7002"
 elif [ ${env} == 'prod' ]; then
   # 生产
+  echo 生产
+  server_host="http://47.113.127.116"
+  webhook_port="5001"
+  port="7003"
 fi
 
+# 根据环境使用不同的nginx配置
+cp -f ./nginx/conf.d/${env}.conf ./nginx/conf.d/app.conf
+
+echo node版本信息
+# 查看node版本
+node --version
+npm --version
+# 设置npm淘宝镜像，加速下载
+npm config set registry https://registry.npm.taobao.org
+# 查看淘宝镜像是否设置成功
+npm config get registry
 # 安装依赖
 npm install
+# contos7中sass-loader有些问题，主要还是linux环境的原因，需要通过以下方法：
+# 方法1、npm rebuild node-sass 通过重构node-sass，但是会从一个国外的网站下载一个东西，第一次较慢，后面正常
+# 方法2、npm install --save-dev sass fibers 这个方法比较快，因为下载用了淘宝的镜像
+npm rebuild node-sass
+# npm install --save-dev sass fibers
 # 打包
 npm run build:$env
+
+# docker仓库地址，这里用的是阿里云的容器镜像服务
+docker_repo_url=registry-vpc.cn-shenzhen.aliyuncs.com/chenbc
+# docker镜像名称，格式：项目名称:环境
+docker_image_name=$app_name:$env
+# 镜像完整地址
+docker_image_url=$docker_repo_url/$docker_image_name
+
+# 删除依赖旧镜像的容器。至少要先停止运行依赖镜像的容器，才能删除镜像
+docker rm -f $(docker ps -a | grep $docker_image_url | awk '{print $1}')
+# 删除旧的镜像。如果不删除旧镜像，会导致产生none标签的镜像
+docker rmi -f $docker_image_url
+# 构建docker镜像，注意后面有个"."
+docker build -t $docker_image_url .
+# 把镜像推到啊里云镜像仓库
+docker push $docker_image_url
+
+# 触发部署服务器的脚本
+if [ "$TOKEN" ]; then
+  curl "${server_host}:${webhook_port}/hook/trigger?token=${TOKEN}&appName=${app_name}&env=${env}&port=${port}"
+fi
+
+# 钉钉通知
+webhook='https://oapi.dingtalk.com/robot/send?access_token=e21dadac4778c0df9ec0ff00869a42482e5ee2692a92098cd668754fa6442ca1'
+title="商城项目部署通知"
+text="#### 部署项目：商城\n#### 环境：${env}\n#### 地址：[单击打开](${server_host}:${port}) ${server_host}:${port}\n#### 更新内容：\n> ${note}"
+
+curl $webhook \
+  -H 'Content-Type: application/json' \
+  -d "{
+    \"msgtype\": \"markdown\",
+    \"markdown\": {
+      \"title\": \"${title}\",
+      \"text\": \"${text}\"
+    }
+  }"

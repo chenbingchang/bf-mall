@@ -29,7 +29,14 @@
         class="home__wheel"
         :imgList="hotImgList"
       ></CarouselImg>
-      <div class="home__goods-list">
+      <div>
+        <a
+          class="home__github"
+          href="https://github.com/chenbingchang/bf-mall/tree/dev"
+          target="_blank"
+        >Github地址</a>
+      </div>
+      <!-- <div class="home__goods-list">
         <a
           class="goods"
           href="#"
@@ -37,17 +44,22 @@
           <div class="goods__img-wrap">
             <img
               class="goods__img"
-              src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/210dce8c3828bcc5ee4afd683e7ffc84.jpg"
+              src=""
               alt=""
             >
           </div>
           <div class="goods__infos">
-            <div class="goods__title"></div>
-            <div class="godds__tags"></div>
+            <div class="goods__title">1px边框</div>
             <div class="goods__price"></div>
           </div>
         </a>
-      </div>
+      </div> -->
+      <div class="a-seat">111</div>
+      <div class="a-seat">222</div>
+      <div class="a-seat">333</div>
+      <div class="a-seat">444</div>
+      <div class="a-seat">555</div>
+      <div class="a-seat">666</div>
     </BfScrollbar>
   </div>
 </template>
@@ -60,11 +72,11 @@ export default {
   data () {
     return {
       hotImgList: [
-        'https://img.wbp5.com/upload/images/fxchat/2020/06/19/084634716.jpg',
-        'https://img.wbp5.com/upload/images/fxchat/2020/06/19/084655325.jpg',
-        'https://img.wbp5.com/upload/images/fxchat/2020/06/19/084714794.jpg',
-        'https://img.wbp5.com/upload/images/fxchat/2020/06/17/140556823.jpg',
-        'https://img.wbp5.com/upload/images/fxchat/2020/06/11/162848609.jpg',
+        'https://img.wx168e.com/upload/images/fxchat/2020/06/19/084634716.jpg',
+        'https://img.wx168e.com/upload/images/fxchat/2020/06/19/084655325.jpg',
+        'https://img.wx168e.com/upload/images/fxchat/2020/06/19/084714794.jpg',
+        'https://img.wx168e.com/upload/images/fxchat/2020/06/17/140556823.jpg',
+        'https://img.wx168e.com/upload/images/fxchat/2020/06/11/162848609.jpg',
       ],
     }
   },
@@ -145,10 +157,16 @@ export default {
       height: px2rem(180);
     }
 
+    &__github {
+      display: inline-block;
+      padding: px2rem(20);
+      font-size: px2rem(20);
+    }
+
     &__goods-list {
       display: flex;
       flex-wrap: wrap;
-      background-color: #f5f5f5;
+      // background-color: #f5f5f5;
     }
 
     .goods {
@@ -168,7 +186,8 @@ export default {
       }
 
       &__title {
-        margin: px2rem(12) 0;
+        border: 1px solid red;
+        margin: px2rem(12);
         font-size: px2rem(12);
 
       }
@@ -180,6 +199,12 @@ export default {
       &__price {
 
       }
+    }
+
+    .a-seat {
+      height: px2rem(100);
+      border: 1px solid #333;
+      margin: px2rem(20);
     }
   }
 </style>

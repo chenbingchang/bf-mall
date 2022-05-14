@@ -1,7 +1,12 @@
 # 名称，随便起
 name: bf-mall-ci
-# 手动触发
-on: workflow_dispatch
+# 手动触发页面上直接寄有，dev分钟push
+on: 
+  workflow_dispatch
+  # push:
+  #   branches:
+  #     - dev
+
 
 # 流程
 jobs:
@@ -15,4 +20,6 @@ jobs:
     # 步骤，可以有很多
     steps:
       # 通过远程触发jenkins的构建，token是在jenkins中配置的，必须配置登录的用户，否则会报错
-      - run: curl ${{ secrets.JENKINS_URL }} --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_PWD }}
+      # 手动触发时 curl ${{ secrets.JENKINS_URL }}&env=dev&branch=dev --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_PWD }}这样就好
+      # 但是自动触发像push时触发，特殊字符&会作为本身想表示的意思导致命令报错，而加上单引号''转义就好
+      - run: curl ${{ secrets.JENKINS_URL }}'&env=dev&branch=dev' --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_PWD }}

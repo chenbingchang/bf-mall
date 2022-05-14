@@ -24,7 +24,7 @@ module.exports = {
   devServer: {
     hot: true,
     liveReload: true,
-    port: 1425,
+    port: 7000,
   },
   chainWebpack: config => {
     // 引入路劲的别名
@@ -34,7 +34,7 @@ module.exports = {
       .set('@common', resolve('src/common'))
     // html标题
     config.plugin('html').tap(args => {
-      args[0].title = '冰封商城'
+      args[0].title = 'h5适配demo'
       return args
     })
   },
